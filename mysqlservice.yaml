@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mysql2
+    tier: database2
+  name: mysql2
+  spec:
+    ports:
+      - port: 3306
+        protocol: TCP
+        targetPort: 3306
+    selector:
+      app: mysql2
+      tier: database2
+    type: ClusterIP
+  status:
+    loadBalancer: {}
