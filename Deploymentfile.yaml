@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: collegefest
+spec:
+  selector:
+    matchLabels:
+      app: collegefest
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: collegefest
+    spec:
+      containers:
+        - name: collegefest
+          image: collegefest:01
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8082
+          env: # Setting Environmental Variables
+            - name: DB_HOST   # Setting Database host address
+              value: mysql2
