@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: mysql-pv-volume1310
+  name: mysql-pv-volume1810
   labels:
     type: local
 spec:
@@ -16,7 +16,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pv-claim1310
+  name: mysql-pv-claim1810
 spec:
   storageClassName: manual
   accessModes:
@@ -28,7 +28,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: mysql2
 spec:
   replicas: 1
   selector:    
@@ -47,21 +47,23 @@ spec:
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: root
+            - name: MYSQL_DATABASE
+              value: collegefest
           ports:
             - containerPort: 3306
               name: mysql
           volumeMounts:
-            - name: mysql-persistent-storage1310
-              mountPath: /var/lib/mysql1310
+            - name: mysql-persistent-storage1810
+              mountPath: /var/lib/mysql1810
       volumes:
-        - name: mysql-persistent-storage1310
+        - name: mysql-persistent-storage1810
           persistentVolumeClaim:
-            claimName: mysql-pv-claim1310
+            claimName: mysql-pv-claim1810
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: mysql2
 spec:
   ports:
     - port: 3306
