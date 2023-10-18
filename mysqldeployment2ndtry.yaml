@@ -30,8 +30,8 @@ kind: Deployment
 metadata:
   name: mysql
 spec:
-  selector:
-    replicas: 1
+  replicas: 1
+  selector:    
     matchLabels:
       app: mysql
   strategy:
@@ -54,7 +54,7 @@ spec:
             - name: mysql-persistent-storage1310
               mountPath: /var/lib/mysql1310
       volumes:
-        - name: mysql-persistent-storage
+        - name: mysql-persistent-storage1310
           persistentVolumeClaim:
             claimName: mysql-pv-claim1310
 ---
